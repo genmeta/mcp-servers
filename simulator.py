@@ -5,15 +5,14 @@ import pyttsx3
 mcp = FastMCP(
     "simulator", 
     host="0.0.0.0",
-    port=8000,
-    cors_allowed_origins=["*"],  # 允许跨域请求
-    response_headers={"Content-Type": "text/event-stream"}  # 确保正确的内容类型头
+    port=8000
 )
 
 # 初始化 pyttsx3 引擎
 engine = pyttsx3.init()
 # 设置语速，默认值是200
 engine.setProperty('rate', 150)
+engine.setProperty("volume", 4.0)
 
 @mcp.tool()
 async def simu_control(direction: str, distance: float) -> str:
