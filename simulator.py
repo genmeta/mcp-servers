@@ -9,7 +9,7 @@ mcp = FastMCP(
 )
 
 # 初始化 pyttsx3 引擎
-engine = pyttsx3.init()
+engine = pyttsx3.init(driverName='espeak')
 # 设置语速，默认值是200
 engine.setProperty('rate', 150)
 engine.setProperty("volume", 4.0)

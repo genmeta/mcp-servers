@@ -7,11 +7,13 @@ Requires=network-online.target
 Type=simple
 PIDFile=/home/luffy/MCP/simulator/run/simulator.pid
 User=luffy
-Group=luffy
+Environment="XDG_RUNTIME_DIR=/run/user/%U"
+Environment="PULSE_RUNTIME_PATH=/run/user/%U/pulse"
+Environment="ALSAAUDIODEV=plughw:2,0"
 WorkingDirectory=/home/luffy/MCP/simulator
 ExecStart=/home/luffy/MCP/simulator/.venv/bin/python simulator.py
 ExecStop=-/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile /home/luffy/MCP/simulator/run/simulator.pid
-TimeoutStopSec=60
+TimeoutStopSec=5
 KillMode=mixed
 Restart=on-failure
 RestartSec=15s
