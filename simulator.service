@@ -1,0 +1,20 @@
+[Unit]
+Description=Simulator Service (UV Framework)
+After=network.target
+Requires=network-online.target
+
+[Service]
+Type=simple
+PIDFile=/home/luffy/MCP/simulator/run/simulator.pid
+User=luffy
+Group=luffy
+WorkingDirectory=/home/luffy/MCP/simulator
+ExecStart=/home/luffy/MCP/simulator/.venv/bin/python simulator.py
+ExecStop=-/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile /home/luffy/MCP/simulator/run/simulator.pid
+TimeoutStopSec=60
+KillMode=mixed
+Restart=on-failure
+RestartSec=15s
+
+[Install]
+WantedBy=multi-user.target
